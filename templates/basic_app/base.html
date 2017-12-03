@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title_block %}{% endblock %}</title>
+    <style>
+
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+<body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="navbar-brand" href="{% url 'basic_app:index' %} ">DJANGO</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'basic_app:registration' %}">Register</a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                        <li>
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a class="nav-link" href="{% url 'basic_app:user_login' %}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </nav>
+
+        <div class="container">
+            {% block body_block %}
+
+            {% endblock %}
+        </div>
+</body>
+</html>
